@@ -1,30 +1,9 @@
-Exploratory Data Analysis Course Project 1
+Reproducible Research Course Project 1
 ======================================================
 
 
 ```r
 library(dplyr)
-```
-
-```
-## Warning: package 'dplyr' was built under R version 3.5.2
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
 ```
 
 Part 1
@@ -144,13 +123,6 @@ fill in the missing values with mean of intervals
 
 ```r
 mean_step_interval <- activity_data %>% group_by(interval) %>% summarise(mean_step = mean(steps, na.rm = T))
-```
-
-```
-## Warning: package 'bindrcpp' was built under R version 3.5.2
-```
-
-```r
 activity_data_new <- merge(activity_data, mean_step_interval, by = "interval", all.x = T)
 activity_data_new$steps[is.na(activity_data_new$steps)] <- activity_data_new[is.na(activity_data_new$steps), ]$mean_step
 ```
